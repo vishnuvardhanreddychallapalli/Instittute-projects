@@ -1,1 +1,29 @@
 
+import numpy as np
+import pandas as pd
+ata=np.loadtxt("0000000000002329_training_diabetes_x_y_train.csv",delimiter=",")
+testdata=np.loadtxt("0000000000002329_test_diabetes_x_test.csv",delimiter=",")
+print(data.shape)
+X_train=data[:,:10]
+Y_train=data[:,10]
+print(testdata.shape)
+X_test=testdata[:,:10]
+from sklearn.linear_model import LinearRegression
+alg1=LinearRegression()
+alg1.fit(X_train,Y_train)
+data=pd.DataFrame(X_test)
+data
+m_values=alg1.coef_
+b_values=alg1.intercept_
+m_values,b_values
+len1,len2=X_test.shape
+y_pred=[]
+k=0
+for i in range(len1):
+    xtest=data.iloc[i]
+    values=np.dot(xtest,m_values)+b_values
+    y_pred.append(values)
+   
+    
+y_pred=np.array(y_pred)
+np.savetxt('codingninjalinearregression.csv',y_pred,fmt='%.5f')
